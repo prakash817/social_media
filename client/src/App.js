@@ -5,8 +5,7 @@ import Register from "./pages/register/Register";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Redirect,
+  Route
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
@@ -17,10 +16,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={user ? <Home /> : <Register />} />
-        <Route path="/login" element={user ? <Redirect to="/" /> : <Login />} />
-        <Route path="/register" element={user ? <Redirect to="/" /> : <Register />} />
-        <Route path="/messenger" element={!user ? <Redirect to="/" /> : <Messenger />} />
+        <Route exact path="/" element={user ? <Home /> : <Login />} />
+        <Route path="/login" element={user ? <Home /> : <Login />} />
+        <Route path="/register" element={user ? < Home /> : <Register />} />
+        <Route path="/messenger" element={!user ? <Login /> : <Messenger />} />
         <Route path="/profile/:username" element={<Profile />} />
       </Routes>
     </Router>

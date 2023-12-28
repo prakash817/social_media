@@ -5,14 +5,14 @@ import {
   Room,
   EmojiEmotions,
   Cancel,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 export default function Share() {
   const { user } = useContext(AuthContext);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = "https://connect-with-me-7a6t.onrender.com/images/";
   const desc = useRef();
   const [file, setFile] = useState(null);
 
@@ -30,13 +30,13 @@ export default function Share() {
       newPost.img = fileName;
       console.log(newPost);
       try {
-        await axios.post("/upload", data);
-      } catch (err) {}
+        await axios.post("https://connect-with-me-7a6t.onrender.com/api/upload", data);
+      } catch (err) { }
     }
     try {
-      await axios.post("/posts", newPost);
+      await axios.post("https://connect-with-me-7a6t.onrender.com/api/posts", newPost);
       window.location.reload();
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (

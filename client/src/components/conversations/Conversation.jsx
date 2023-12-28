@@ -4,14 +4,14 @@ import "./conversation.css";
 
 export default function Conversation({ conversation, currentUser }) {
   const [user, setUser] = useState(null);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = "https://connect-with-me-7a6t.onrender.com/images/";
 
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser._id);
 
     const getUser = async () => {
       try {
-        const res = await axios("/users?userId=" + friendId);
+        const res = await axios("https://connect-with-me-7a6t.onrender.com/api/users?userId=" + friendId);
         setUser(res.data);
       } catch (err) {
         console.log(err);

@@ -1,5 +1,5 @@
 import "./post.css";
-import { MoreVert } from "@material-ui/icons";
+import { MoreVert } from '@mui/icons-material';
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js";
@@ -10,7 +10,7 @@ export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = "https://connect-with-me-7a6t.onrender.com/images/";
   const { user: currentUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Post({ post }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/users?userId=${post.userId}`);
+      const res = await axios.get(`https://connect-with-me-7a6t.onrender.com/api/users?userId=${post.userId}`);
       setUser(res.data);
     };
     fetchUser();
@@ -27,8 +27,8 @@ export default function Post({ post }) {
 
   const likeHandler = () => {
     try {
-      axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
-    } catch (err) {}
+      axios.put("https://connect-with-me-7a6t.onrender.com/api/posts/" + post._id + "/like", { userId: currentUser._id });
+    } catch (err) { }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
