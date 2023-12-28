@@ -12,8 +12,20 @@ import {
 } from "@mui/icons-material";
 import { Users } from "../../dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";
+import { Link } from "react-router-dom";
+import { loginOut } from "../../apiCalls";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Sidebar() {
+
+  const { user, dispatch } = useContext(AuthContext)
+  console.log(user, "sidebar")
+
+  const handleLogout = () => {
+    loginOut(dispatch)
+  }
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -62,6 +74,9 @@ export default function Sidebar() {
             <CloseFriend key={u.id} user={u} />
           ))}
         </ul>
+        <Link to={"/"}>
+          <button className="logout" onClick={handleLogout}>Logout</button>
+        </Link>
       </div>
     </div>
   );

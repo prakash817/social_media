@@ -109,7 +109,7 @@ export default function Messenger() {
             <input placeholder="Search for friends" className="chatMenuInput" />
             {conversations.map((c) => (
               <div onClick={() => setCurrentChat(c)}>
-                <Conversation conversation={c} currentUser={user} />
+                <Conversation conversation={c} currentUser={user} key={Date.now()} />
               </div>
             ))}
           </div>
@@ -120,7 +120,7 @@ export default function Messenger() {
               <>
                 <div className="chatBoxTop">
                   {messages.map((m) => (
-                    <div ref={scrollRef}>
+                    <div ref={scrollRef} key={Date.now()}>
                       <Message message={m} own={m.sender === user._id} />
                     </div>
                   ))}

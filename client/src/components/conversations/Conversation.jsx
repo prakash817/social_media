@@ -11,8 +11,9 @@ export default function Conversation({ conversation, currentUser }) {
 
     const getUser = async () => {
       try {
-        const res = await axios("https://connect-with-me-7a6t.onrender.com/api/users?userId=" + friendId);
+        const res = await axios(`https://connect-with-me-7a6t.onrender.com/api/users?userId=${friendId}`);
         setUser(res.data);
+        console.log(res.data, "covrsation")
       } catch (err) {
         console.log(err);
       }
